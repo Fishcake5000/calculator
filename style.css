@@ -13,6 +13,7 @@ html, body, #container {
 #display {
     grid-area: 1/1/2/5;
     background-color: aqua;
+    font-size: 40px;
 }
 
 .number {
