@@ -7,7 +7,7 @@ html, body, #container {
     margin: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
 }
 
 #display {
@@ -25,7 +25,19 @@ html, body, #container {
     font-size: 30px;
 }
 
-#enter {
+.function {
     background-color: papayawhip;
     font-size: 30px;
+}
+
+#plus {
+    grid-area: 3/4/5/5;
+}
+
+#enter {
+    grid-area: 5/4/7/5;
+}
+
+#zero {
+    grid-area: 6/1/7/3;
 }
