@@ -1,19 +1,20 @@
 const display = document.querySelector('#display');
-const clear = document.querySelector('#clear');
-const back = document.querySelector('#back');
-const enter = document.querySelector('#enter');
-const divide = document.querySelector('#divide');
-const multiply = document.querySelector('#multiply');
-const minus = document.querySelector('#minus');
-const plus = document.querySelector('#plus');
-const zero = document.querySelector('#zero');
-const one = document.querySelector('#one');
-const two = document.querySelector('#two');
-const three = document.querySelector('#three');
-const four = document.querySelector('#four');
-const five = document.querySelector('#five');
-const six = document.querySelector('#six');
-const seven = document.querySelector('#seven');
-const eight = document.querySelector('#eight');
-const nine = document.querySelector('#nine');
-const decimal = document.querySelector('#decimal');
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+const functions = document.querySelectorAll('.function');
+numbers.forEach(number => number.addEventListener('click', newNumber));
+operators.forEach(operator => operator.addEventListener('click', newOperator));
+functions.forEach(funct => funct.addEventListener('click', newFunction));
+
+function newNumber(e) {
+    
+    return;
+}
+
+function newOperator(e) {
+    return;
+}
+
+function newFunction(e) {
+    return;
+}
