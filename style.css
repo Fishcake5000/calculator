@@ -1,0 +1,31 @@
+html, body, #container {
+    height: 100%;
+}
+
+#container {
+    width: 40%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#display {
+    grid-area: 1/1/2/5;
+    background-color: aqua;
+}
+
+.number {
+    background-color: darksalmon;
+    font-size: 30px;
+}
+
+.operator {
+    background-color: khaki;
+    font-size: 30px;
+}
+
+#enter {
+    background-color: papayawhip;
+    font-size: 30px;
+}
