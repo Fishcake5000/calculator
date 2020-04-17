@@ -7,9 +7,11 @@ operators.forEach(operator => operator.addEventListener('click', clickOperator))
 const enterButton = document.querySelector('#enter');
 const clearButton = document.querySelector('#clear');
 const backButton = document.querySelector('#back');
+const decimalButton = document.querySelector('#decimal');
 enterButton.addEventListener('click', enter);
 clearButton.addEventListener('click', clear);
 backButton.addEventListener('click', back);
+decimalButton.addEventListener('click', addDecimal);
 window.addEventListener('keydown', keyPress);
 
 
@@ -19,7 +21,7 @@ function clickNumber(e) {
 
 function newNumber(str) {
     calculation[calculation.length - 1] += str;
-    display.textContent += str;
+    updateDisplay();
 }
 
 function clickOperator(e) {
@@ -29,17 +31,17 @@ function clickOperator(e) {
 function newOperator(str) {
     calculation.push(str);
     calculation.push('');
-    display.textContent += str;
+    updateDisplay();
 }
 
 function enter() {
     calculation = calculate(calculation);
-    display.textContent = calculation[0];
+    updateDisplay();
 }
 
 function clear() {
     calculation = [''];
-    display.textContent = '';
+    updateDisplay();
 }
 
 function back() {
@@ -49,11 +51,22 @@ function back() {
     } else {
         calculation[calculation.length -1] = calculation[calculation.length -1].slice(0,-1);
     }
-    display.textContent = display.textContent.slice(0,-1);
+    updateDisplay();
 }
 
 function addDecimal() {
-    return;
+    if (calculation[calculation.length-1] === '') {
+        calculation[calculation.length-1] = '0.';
+        return;
+    }
+    if (calculation[calculation.length-1].indexOf('.') === -1) {
+        calculation[calculation.length-1] += '.';
+    }
+    updateDisplay();
+}
+
+function updateDisplay() {
+    display.textContent = calculation.reduce((concat, str) => (concat + str), '');
 }
 
 function keyPress(e) {
