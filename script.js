@@ -106,6 +106,9 @@ function calculate(calculation) {
         if (calculation[index] === '*') {
             result = calculation[index-1] * calculation[index+1];
         } else {
+            if (parseInt(calculation[index+1],10) === 0) {
+                return ['Forbidden !']
+            }
             result = calculation[index-1] / calculation[index+1];
         }
         calculation.splice(index-1, 3, result.toString());
