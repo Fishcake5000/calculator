@@ -24,6 +24,11 @@ html, body, #container {
     font-size: 30px;
 }
 
+#decimal {
+    background-color: darksalmon;
+    font-size: 30px;
+}
+
 .operator {
     background-color: khaki;
     font-size: 30px;
