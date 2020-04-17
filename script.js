@@ -85,6 +85,9 @@ function keyPress(e) {
         case '.':
             addDecimal;
             break;
+        case 'Escape':
+            clear()
+            break;
     }
 }
 
