@@ -1,21 +1,61 @@
+function convertSymbolToText(str) {
+    switch (str) {
+        case '0':
+            return 'zero';
+        case '1':
+            return 'one';
+        case '2':
+            return 'two';
+        case '3':
+            return 'three';
+        case '4':
+            return 'four';
+        case '5':
+            return 'five';
+        case '6':
+            return 'six';
+        case '7':
+            return 'seven';
+        case '8':
+            return 'eight';
+        case '9':
+            return 'nine';
+        case '+':
+            return 'plus';
+        case '-':
+            return 'minus';
+        case '*':
+            return 'multiply';
+        case '/':
+            return 'divide';
+    }
+}
+
 //Select display and add event listeners to the buttons
 const display = document.querySelector('#display');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 numbers.forEach(number => number.addEventListener('click', clickNumber));
+numbers.forEach(number => number.addEventListener('transitionend', removeTransition));
 operators.forEach(operator => operator.addEventListener('click', clickOperator));
+operators.forEach(operator => operator.addEventListener('transitionend', removeTransition));
 const enterButton = document.querySelector('#enter');
 const clearButton = document.querySelector('#clear');
 const backButton = document.querySelector('#back');
 const decimalButton = document.querySelector('#decimal');
 enterButton.addEventListener('click', enter);
+enterButton.addEventListener('transitionend', removeTransition);
 clearButton.addEventListener('click', clear);
+clearButton.addEventListener('transitionend', removeTransition);
 backButton.addEventListener('click', back);
+backButton.addEventListener('transitionend', removeTransition);
 decimalButton.addEventListener('click', addDecimal);
+decimalButton.addEventListener('transitionend', removeTransition);
 window.addEventListener('keydown', keyPress);
 
 
 function clickNumber(e) {
+    e.target.classList.add('pressed');
     newNumber(e.target.textContent);
 }
 
@@ -25,6 +65,7 @@ function newNumber(str) {
 }
 
 function clickOperator(e) {
+    e.target.classList.add('pressed');
     newOperator(e.target.textContent);
 }
 
@@ -35,34 +76,45 @@ function newOperator(str) {
 }
 
 function enter() {
+    const bttn = document.querySelector('#enter');
+    bttn.classList.add('pressed');
     calculation = calculate(calculation);
     updateDisplay();
 }
 
 function clear() {
+    const bttn = document.querySelector('#clear');
+    bttn.classList.add('pressed');
     calculation = [''];
     updateDisplay();
 }
 
 function back() {
-    if (calculation[calculation.length -1] === '') {
-        calculation.pop();
-        calculation.pop();
-    } else {
-        calculation[calculation.length -1] = calculation[calculation.length -1].slice(0,-1);
+    const bttn = document.querySelector('#back');
+    bttn.classList.add('pressed');
+    if (calculation.length >1 || calculation[0]) { //Checks that the calculation array isn't empty
+        if (calculation[calculation.length -1] === '') {
+            calculation.pop();
+            calculation.pop();
+        } else {
+            calculation[calculation.length -1] = calculation[calculation.length -1].slice(0,-1);
+        }
+        updateDisplay();
     }
-    updateDisplay();
 }
 
 function addDecimal() {
     if (calculation[calculation.length-1] === '') {
         calculation[calculation.length-1] = '0.';
+        updateDisplay();
         return;
     }
     if (calculation[calculation.length-1].indexOf('.') === -1) {
         calculation[calculation.length-1] += '.';
+        const bttn = document.querySelector('#decimal');
+        bttn.classList.add('pressed');
+        updateDisplay();
     }
-    updateDisplay();
 }
 
 function updateDisplay() {
@@ -70,6 +122,7 @@ function updateDisplay() {
 }
 
 function keyPress(e) {
+    let button;
     switch (e.key) {
         case '0':
         case '1':
@@ -81,12 +134,16 @@ function keyPress(e) {
         case '7':
         case '8':
         case '9':
+            bttn = document.querySelector(`#${convertSymbolToText(e.key)}`);
+            bttn.classList.add('pressed');
             newNumber(e.key);
             break;
         case '+':
         case '-':
         case '*':
         case '/':
+            bttn = document.querySelector(`#${convertSymbolToText(e.key)}`);
+            bttn.classList.add('pressed');
             newOperator(e.key);
             break;
         case 'Enter':
@@ -96,12 +153,16 @@ function keyPress(e) {
             back();
             break;
         case '.':
-            addDecimal;
+            addDecimal();
             break;
         case 'Escape':
             clear()
             break;
     }
+}
+
+function removeTransition(e) {
+    e.target.classList.remove('pressed');
 }
 
 isPriorityOperation = (str) => (str === '/' || str === '*');

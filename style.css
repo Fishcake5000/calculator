@@ -1,7 +1,5 @@
 html, body {
     height: 100%;
-    color: black;
-    font-family: 'Baloo 2', cursive;
 }
 
 body {
@@ -37,7 +35,10 @@ body {
 }
 
 button {
+    color: black;
+    font-family: 'Baloo 2', cursive;
     border: 1px solid #320e3b;
+    transition: all 0.1s ease-out;
 }
 
 .number, #decimal {
@@ -63,4 +64,8 @@ button {
 #zero {
     grid-area: 6/1/7/3;
     border-radius: 0 0 0 20px;
+}
+
+.pressed {
+    border: 5px solid black;
 }
