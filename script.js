@@ -1,3 +1,17 @@
+function convertSymbolToString(sym) {
+    switch (sym) {
+        case '+':
+            return 'plus';
+        case '-':
+            return 'minus';
+        case '*':
+            return 'multiply';
+        case '/':
+            return 'divide';
+    }
+}
+
+
 //Select display and add event listeners to the buttons
 const display = document.querySelector('#display');
 const numbers = document.querySelectorAll('.number');
@@ -116,7 +130,7 @@ function keyPress(e) {
         case '-':
         case '*':
         case '/':
-            bttn = document.querySelector(`#b`+e.key);
+            bttn = document.querySelector(`#${convertSymbolToString(e.key)}`);
             bttn.classList.add('pressed');
             newOperator(e.key);
             break;
