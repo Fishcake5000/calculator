@@ -10,10 +10,13 @@ html, body, #container {
     grid-template-rows: repeat(6, 1fr);
 }
 
-#display {
+#display-container {
+    display: flex;
     grid-area: 1/1/2/5;
+    justify-content: flex-end;
+    align-items: center;
     background-color: aqua;
-    font-size: 40px;
+    font-size: 80px;
 }
 
 .number {
