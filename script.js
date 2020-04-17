@@ -119,6 +119,13 @@ function addDecimal() {
 
 function updateDisplay() {
     display.textContent = calculation.reduce((concat, str) => (concat + str), '');
+    if (display.textContent.length < 9) {
+        display.style.fontSize = '80px';
+    } else if (display.textContent.length < 14) {
+        display.style.fontSize = '50px';
+    } else {
+        display.style.fontSize = '30px';
+    }
 }
 
 function keyPress(e) {
@@ -185,6 +192,7 @@ function calculate(calculation) {
             }
             result = calculation[index-1] / calculation[index+1];
         }
+        result = Math.round(result*100000)/100000;
         calculation.splice(index-1, 3, result.toString());
     }
     while (calculation.some(isLowPriorityOperation)) {
