@@ -1,36 +1,3 @@
-function convertSymbolToText(str) {
-    switch (str) {
-        case '0':
-            return 'zero';
-        case '1':
-            return 'one';
-        case '2':
-            return 'two';
-        case '3':
-            return 'three';
-        case '4':
-            return 'four';
-        case '5':
-            return 'five';
-        case '6':
-            return 'six';
-        case '7':
-            return 'seven';
-        case '8':
-            return 'eight';
-        case '9':
-            return 'nine';
-        case '+':
-            return 'plus';
-        case '-':
-            return 'minus';
-        case '*':
-            return 'multiply';
-        case '/':
-            return 'divide';
-    }
-}
-
 //Select display and add event listeners to the buttons
 const display = document.querySelector('#display');
 const numbers = document.querySelectorAll('.number');
@@ -141,7 +108,7 @@ function keyPress(e) {
         case '7':
         case '8':
         case '9':
-            bttn = document.querySelector(`#${convertSymbolToText(e.key)}`);
+            bttn = document.querySelector(`#b`+e.key);
             bttn.classList.add('pressed');
             newNumber(e.key);
             break;
@@ -149,7 +116,7 @@ function keyPress(e) {
         case '-':
         case '*':
         case '/':
-            bttn = document.querySelector(`#${convertSymbolToText(e.key)}`);
+            bttn = document.querySelector(`#b`+e.key);
             bttn.classList.add('pressed');
             newOperator(e.key);
             break;
