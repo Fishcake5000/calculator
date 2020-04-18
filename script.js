@@ -184,6 +184,7 @@ function calculate(calculation) {
         } else {
             result = calculation[index-1] - calculation[index+1];
         }
+        result = Math.round(result*100000)/100000;
         calculation.splice(index-1, 3, result.toString());
     }
     return calculation;
